@@ -1,0 +1,82 @@
+
+
+  <div id="main_container" class="container.fluid myfont">
+    <div class="row">
+      <div class="col-12">
+        <p id="notice"><%= notice %></p>
+
+
+
+
+ <!--Sign Up Button --> 
+
+ <!--Sign In Button --> 
+ 
+
+  
+
+  
+ <!--Create New Artwork Button IF logged in and has profile--> 
+ 
+
+  <!--Create Go To Profile Button IF logged as user that ownes that profile--> 
+ 
+  
+
+
+ 
+
+
+
+
+<!--Main Header--> 
+            <div class="col">
+              <div class="row">        
+                <div class="col-md-12">
+                  <class="main-header">
+                    <%=image_tag("cloud-md.png")%>
+                    <h1><strong><em>Sydney Artists</em></strong></h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+<!--  div for cards -->
+             <div class="col">
+              <div class="row">
+                <% @artworks.each do |artwork| %>
+                  <div class="col-md-3">
+                    <div class="card" style="width: 18rem;">
+                    <h5 class="card-title"><%= artwork.artist %></h5>
+                     
+                      <% if artwork.image.present? then %>
+                        <div class="card-img-top"><%= image_tag artwork.image.thumb.url %></div>
+                      <% else %>
+                        No image
+                      <% end %>
+
+                      <div class="card-body">  
+                      <p class="card-text">Title: <em><%= artwork.title %></em></p>
+                      <p class="card-text">Catagory: <%= artwork.catagory %></p>
+                      <p class="card-text">Medium: <%= artwork.medium %></p>
+                      <p small class="card-muted">Description: <small><%= artwork.description %></small>
+                      <p class="card-text">Price $<%= artwork.price %></p>
+                      <p class="btn btn-primary"><%= link_to 'Show', artwork %></p>
+                      <!--link to artists profile page that shows all THEIR artwork -->
+                      <p class="btn btn-primary"><%= link_to 'Go to Artist', artwork.user.profile%></p>
+
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+
+         
+        </div>
+      </div>
+    </div> 
+  </div>
+
+
